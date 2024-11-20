@@ -23,88 +23,60 @@
 
         .chart-container {
             margin: 40px 0 20px 0;
-            height: 400px;
+            height: 450px;
             position: relative;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
         }
 
-        .analysis-section {
+        .analysis {
             margin: 20px 0;
-            padding: 20px;
+            padding: 15px;
             background-color: #f8f9fa;
             border-radius: 8px;
-            border-left: 4px solid #4CAF50;
         }
 
-        .analysis-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .phase-analysis {
-            margin-bottom: 15px;
+        .phase-section {
+            margin: 15px 0;
             padding: 10px;
             border-radius: 5px;
         }
 
-        .phase-menstrual {
-            background-color: rgba(255, 182, 193, 0.2);
-            border-left: 4px solid #FF69B4;
+        .phase-menstrual { background-color: rgba(255, 182, 193, 0.2); }
+        .phase-follicular { background-color: rgba(255, 228, 225, 0.2); }
+        .phase-ovulation { background-color: rgba(230, 230, 250, 0.2); }
+        .phase-ovulation2 { background-color: rgba(147, 112, 219, 0.2); }
+        .phase-luteal { background-color: rgba(221, 160, 221, 0.2); }
+        .phase-unknown { background-color: rgba(200, 200, 200, 0.2); }
+
+        h2 {
+            color: #333;
+            margin-top: 25px;
+            margin-bottom: 15px;
         }
 
-        .phase-follicular {
-            background-color: rgba(255, 228, 225, 0.2);
-            border-left: 4px solid #FFA07A;
+        h3 {
+            color: #666;
+            margin-bottom: 10px;
         }
 
-        .phase-ovulation {
-            background-color: rgba(230, 230, 250, 0.2);
-            border-left: 4px solid #9370DB;
+        .note {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
         }
 
-        .phase-luteal {
-            background-color: rgba(221, 160, 221, 0.2);
-            border-left: 4px solid #DDA0DD;
+        ul {
+            margin: 5px 0;
+            padding-left: 20px;
         }
 
-        .phase-title {
-            font-weight: bold;
+        li {
             margin-bottom: 5px;
-        }
-
-        .phase-details {
-            margin-left: 10px;
-            font-size: 14px;
             line-height: 1.4;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f8f9fa;
-        }
-
-        .data-table {
-            margin-top: 20px;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px;
-            }
         }
     </style>
 </head>
@@ -114,89 +86,110 @@
             <canvas id="bbtChart"></canvas>
         </div>
 
-        <div class="analysis-section">
-            <div class="analysis-title">週期階段判斷分析</div>
+        <div class="analysis">
+            <h2>週期階段分析</h2>
             
-            <div class="phase-analysis phase-menstrual">
-                <div class="phase-title">月經期 (10/28-10/31)</div>
-                <div class="phase-details">
-                    - 週期起始日期：10/28（第一天）<br>
-                    - 持續天數：4天<br>
-                    - 體溫特徵：不穩定，有起伏（35.10-35.70°C）
-                </div>
+            <div class="phase-section phase-menstrual">
+                <h3>🌸 月經期 (10/28-10/31)</h3>
+                <ul>
+                    <li>週期起始日期：10/28（第一天）</li>
+                    <li>持續天數：4天</li>
+                    <li>體溫特徵：不穩定，有起伏（35.10-35.70°C）</li>
+                </ul>
             </div>
 
-            <div class="phase-analysis phase-follicular">
-                <div class="phase-title">卵泡期 (11/2-11/8)</div>
-                <div class="phase-details">
-                    - 持續天數：7天<br>
-                    - 體溫特徵：相對穩定在低溫水平（35.02-35.34°C）<br>
-                    - 判斷依據：月經結束後體溫維持低溫平台
-                </div>
+            <div class="phase-section phase-follicular">
+                <h3>🌱 卵泡期 (11/2-11/8)</h3>
+                <ul>
+                    <li>持續天數：7天</li>
+                    <li>體溫特徵：相對穩定在低溫水平（35.02-35.34°C）</li>
+                    <li>判斷依據：月經結束後體溫維持低溫平台</li>
+                </ul>
             </div>
 
-            <div class="phase-analysis phase-ovulation">
-                <div class="phase-title">排卵期 (11/9)</div>
-                <div class="phase-details">
-                    - 關鍵特徵：最低體溫出現（35.07°C）<br>
-                    - 判斷依據：出現體溫最低點後隔天明顯上升<br>
-                    - 特殊現象：體溫升高幅度達0.36°C
-                </div>
+            <div class="phase-section phase-ovulation">
+                <h3>⭐ 可能排卵期一 (11/9)</h3>
+                <ul>
+                    <li>體溫特徵：出現低溫點（35.07°C）</li>
+                    <li>判斷依據：體溫下降後隔天上升</li>
+                    <li>溫差變化：上升0.36°C</li>
+                </ul>
             </div>
 
-            <div class="phase-analysis phase-luteal">
-                <div class="phase-title">黃體期 (11/10-11/19)</div>
-                <div class="phase-details">
-                    - 持續天數：10天<br>
-                    - 體溫特徵：維持在高溫水平（35.42-35.81°C）<br>
-                    - 判斷依據：體溫明顯上升並持續保持<br>
-                    - 特殊現象：11/18出現溫降（可能預示下次月經即將來臨）
-                </div>
+            <div class="phase-section phase-luteal">
+                <h3>🌙 高溫期 (11/10-11/16)</h3>
+                <ul>
+                    <li>持續天數：7天</li>
+                    <li>體溫特徵：維持在較高水平（35.42-35.51°C）</li>
+                </ul>
             </div>
-        </div>
 
-        <div class="data-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>日期</th>
-                        <th>體溫</th>
-                        <th>週期階段</th>
-                    </tr>
-                </thead>
-                <tbody id="dataTable">
-                </tbody>
-            </table>
+            <div class="phase-section phase-ovulation2">
+                <h3>⭐ 可能排卵期二 (11/17-11/18)</h3>
+                <ul>
+                    <li>體溫特徵：明顯的溫度驟降（34.89°C）</li>
+                    <li>判斷依據：出現更明顯的溫降和回升</li>
+                    <li>溫差變化：降溫0.73°C，後續上升0.69°C</li>
+                    <li>特殊現象：溫差比第一次更明顯</li>
+                </ul>
+            </div>
+
+            <div class="phase-section phase-unknown">
+                <h3>📝 待確認期 (11/19-11/20)</h3>
+                <ul>
+                    <li>11/19：體溫上升至35.58°C</li>
+                    <li>11/20：體溫下降至35.24°C（降幅0.34°C）</li>
+                    <li>特點：體溫仍有波動，需持續觀察</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <strong>特別說明：</strong>
+                <ul>
+                    <li>本週期出現兩次可能的排卵徵象</li>
+                    <li>第二次溫度變化（11/17-11/18）更加明顯</li>
+                    <li>最新觀察（11/19-11/20）：
+                        <ul>
+                            <li>體溫持續波動</li>
+                            <li>建議持續觀察其他排卵徵象</li>
+                            <li>關注是否出現月經徵兆</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
+<script>
+    // 基礎體溫數據
+    const bbtData = [
+        {date: "10/28", temp: 35.10, phase: "月經期"},
+        {date: "10/30", temp: 35.70, phase: "月經期"},
+        {date: "10/31", temp: 35.26, phase: "月經期"},
+        {date: "11/2", temp: 35.44, phase: "卵泡期"},
+        {date: "11/3", temp: 35.21, phase: "卵泡期"},
+        {date: "11/4", temp: 35.34, phase: "卵泡期"},
+        {date: "11/5", temp: 35.81, phase: "卵泡期"},
+        {date: "11/6", temp: 35.05, phase: "卵泡期"},
+        {date: "11/7", temp: 35.02, phase: "卵泡期"},
+        {date: "11/8", temp: 35.15, phase: "卵泡期"},
+        {date: "11/9", temp: 35.07, phase: "排卵期一"},
+        {date: "11/10", temp: 35.43, phase: "高溫期"},
+        {date: "11/11", temp: 35.49, phase: "高溫期"},
+        {date: "11/12", temp: 35.51, phase: "高溫期"},
+        {date: "11/13", temp: 35.42, phase: "高溫期"},
+        {date: "11/14", temp: 35.43, phase: "高溫期"},
+        {date: "11/15", temp: 35.81, phase: "高溫期"},
+        {date: "11/16", temp: 35.45, phase: "高溫期"},
+        {date: "11/17", temp: 35.62, phase: "排卵期二"},
+        {date: "11/18", temp: 34.89, phase: "排卵期二"},
+        {date: "11/19", temp: 35.58, phase: "待確認"},
+        {date: "11/20", temp: 35.24, phase: "待確認"}
+    ];
 
-    <script>
-        let bbtData = [
-            {date: "10/28", temp: 35.10, phase: "月經期"},
-            {date: "10/30", temp: 35.70, phase: "月經期"},
-            {date: "10/31", temp: 35.26, phase: "月經期"},
-            {date: "11/2", temp: 35.44, phase: "卵泡期"},
-            {date: "11/3", temp: 35.21, phase: "卵泡期"},
-            {date: "11/4", temp: 35.34, phase: "卵泡期"},
-            {date: "11/5", temp: 35.81, phase: "卵泡期"},
-            {date: "11/6", temp: 35.05, phase: "卵泡期"},
-            {date: "11/7", temp: 35.02, phase: "卵泡期"},
-            {date: "11/8", temp: 35.15, phase: "卵泡期"},
-            {date: "11/9", temp: 35.07, phase: "排卵期"},
-            {date: "11/10", temp: 35.43, phase: "黃體期"},
-            {date: "11/11", temp: 35.49, phase: "黃體期"},
-            {date: "11/12", temp: 35.51, phase: "黃體期"},
-            {date: "11/13", temp: 35.42, phase: "黃體期"},
-            {date: "11/14", temp: 35.43, phase: "黃體期"},
-            {date: "11/15", temp: 35.81, phase: "黃體期"},
-            {date: "11/16", temp: 35.45, phase: "黃體期"},
-            {date: "11/17", temp: 35.62, phase: "黃體期"},
-            {date: "11/18", temp: 34.89, phase: "黃體期"},
-            {date: "11/19", temp: 35.58, phase: "黃體期"}
-        ];
-
+    // 初始化圖表
+    window.onload = function() {
         const ctx = document.getElementById('bbtChart').getContext('2d');
-        const chart = new Chart(ctx, {
+        new Chart(ctx, {
             type: 'line',
             data: {
                 labels: bbtData.map(d => d.date),
@@ -215,7 +208,10 @@
                 maintainAspectRatio: false,
                 layout: {
                     padding: {
-                        top: 30
+                        top: 30,
+                        right: 20,
+                        bottom: 10,
+                        left: 20
                     }
                 },
                 plugins: {
@@ -246,29 +242,41 @@
                     const chartArea = chart.chartArea;
                     const xAxis = chart.scales.x;
 
-                    // 月經期區域
+                    // 月經期背景
                     const menstrualStart = xAxis.getPixelForValue('10/28');
                     const menstrualEnd = xAxis.getPixelForValue('10/31');
                     ctx.fillStyle = 'rgba(255, 182, 193, 0.2)';
                     ctx.fillRect(menstrualStart, chartArea.top, menstrualEnd - menstrualStart, chartArea.bottom - chartArea.top);
 
-                    // 卵泡期區域
+                    // 卵泡期背景
                     const follicularStart = xAxis.getPixelForValue('11/2');
                     const follicularEnd = xAxis.getPixelForValue('11/8');
                     ctx.fillStyle = 'rgba(255, 228, 225, 0.2)';
                     ctx.fillRect(follicularStart, chartArea.top, follicularEnd - follicularStart, chartArea.bottom - chartArea.top);
 
-                    // 排卵期區域
-                    const ovulationStart = xAxis.getPixelForValue('11/9');
-                    const ovulationEnd = xAxis.getPixelForValue('11/9');
+                    // 排卵期一背景
+                    const ovulation1Start = xAxis.getPixelForValue('11/9');
+                    const ovulation1End = xAxis.getPixelForValue('11/9');
                     ctx.fillStyle = 'rgba(230, 230, 250, 0.2)';
-                    ctx.fillRect(ovulationStart, chartArea.top, ovulationEnd - ovulationStart, chartArea.bottom - chartArea.top);
+                    ctx.fillRect(ovulation1Start, chartArea.top, ovulation1End - ovulation1Start, chartArea.bottom - chartArea.top);
 
-                    // 黃體期區域
+                    // 高溫期背景
                     const lutealStart = xAxis.getPixelForValue('11/10');
-                    const lutealEnd = xAxis.getPixelForValue('11/19');
+                    const lutealEnd = xAxis.getPixelForValue('11/16');
                     ctx.fillStyle = 'rgba(221, 160, 221, 0.2)';
                     ctx.fillRect(lutealStart, chartArea.top, lutealEnd - lutealStart, chartArea.bottom - chartArea.top);
+
+                    // 排卵期二背景
+                    const ovulation2Start = xAxis.getPixelForValue('11/17');
+                    const ovulation2End = xAxis.getPixelForValue('11/18');
+                    ctx.fillStyle = 'rgba(147, 112, 219, 0.2)';
+                    ctx.fillRect(ovulation2Start, chartArea.top, ovulation2End - ovulation2Start, chartArea.bottom - chartArea.top);
+
+                    // 待確認期背景
+                    const unknownStart = xAxis.getPixelForValue('11/19');
+                    const unknownEnd = xAxis.getPixelForValue('11/20');
+                    ctx.fillStyle = 'rgba(200, 200, 200, 0.2)';
+                    ctx.fillRect(unknownStart, chartArea.top, unknownEnd - unknownStart, chartArea.bottom - chartArea.top);
                 }
             },
             {
@@ -294,43 +302,34 @@
                     ctx.fillStyle = '#FFA07A';
                     ctx.fillText('卵泡期', (follicularStart + follicularEnd) / 2, chartArea.top - 15);
                     
-                    // 排卵期標籤
-                    const ovulationPos = xAxis.getPixelForValue('11/9');
+                    // 排卵期一標籤
+                    const ovulation1Start = xAxis.getPixelForValue('11/9');
                     ctx.fillStyle = '#9370DB';
-                    ctx.fillText('排卵期', ovulationPos, chartArea.top - 15);
+                    ctx.fillText('排卵期一', ovulation1Start, chartArea.top - 15);
                     
-                    // 黃體期標籤
+                    // 高溫期標籤
                     const lutealStart = xAxis.getPixelForValue('11/10');
-                    const lutealEnd = xAxis.getPixelForValue('11/19');
+                    const lutealEnd = xAxis.getPixelForValue('11/16');
                     ctx.fillStyle = '#DDA0DD';
-                    ctx.fillText('黃體期', (lutealStart + lutealEnd) / 2, chartArea.top - 15);
+                    ctx.fillText('高溫期', (lutealStart + lutealEnd) / 2, chartArea.top - 15);
+
+                    // 排卵期二標籤
+                    const ovulation2Start = xAxis.getPixelForValue('11/17');
+                    const ovulation2End = xAxis.getPixelForValue('11/18');
+                    ctx.fillStyle = '#9370DB';
+                    ctx.fillText('排卵期二', (ovulation2Start + ovulation2End) / 2, chartArea.top - 15);
+
+                    // 待確認期標籤
+                    const unknownStart = xAxis.getPixelForValue('11/19');
+                    const unknownEnd = xAxis.getPixelForValue('11/20');
+                    ctx.fillStyle = '#666666';
+                    ctx.fillText('待確認', (unknownStart + unknownEnd) / 2, chartArea.top - 15);
                     
                     ctx.restore();
                 }
             }]
         });
-
-        function updateTable() {
-            const tbody = document.getElementById('dataTable');
-            tbody.innerHTML = bbtData.map(d => {
-                let phaseClass = '';
-                switch(d.phase) {
-                    case '月經期': phaseClass = 'phase-menstrual'; break;
-                    case '卵泡期': phaseClass = 'phase-follicular'; break;
-                    case '排卵期': phaseClass = 'phase-ovulation'; break;
-                    case '黃體期': phaseClass = 'phase-luteal'; break;
-                }
-                return `
-                    <tr class="${phaseClass}">
-                        <td>${d.date}</td>
-                        <td>${d.temp}°C</td>
-                        <td>${d.phase}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        updateTable();
-    </script>
+    };
+</script>
 </body>
 </html>
